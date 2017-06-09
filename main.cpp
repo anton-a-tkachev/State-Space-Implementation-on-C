@@ -28,21 +28,25 @@ int main(int argc, char** argv) {
 	double C[2][2] = {{1, 0},	// [m] - displacement
 			  {0, 1}};	// [m/s] - velocity
 	
-	double x1[2] = {x0, v0};	// old values from previous iteration (initialized with the initial conditions)
-	double x2[2] = {0, 0};		// new values from current iteration
+	double x1[2] = {x0, v0};	// old state vector values from previous iteration (initialized with the initial conditions)
+	double x2[2] = {0, 0};		// new state vector values from current iteration
 	
-	double y[2] = {0, 0};
+	double y[2] = {0, 0};		// output vector: [displacement, velocity]
 	
-	double u[2] = {0, 0};
+	double u[2] = {0, 0};		// input vector: [0, force]
 	
 	// Implementation
 	FILE *fp;
 	fp = fopen("output.csv", "w");	// create a csv-file which can be opened in Excel
 	
+	// Input excitation parameters
+	double f = 0.5;		// [Hz] - sinewave excitation frequency
+	double a = 1;		// [a.u.] - sinewave excitation amplitude
+	
 	for(int i = 0; i < Tf/T; i++){
-		u[1] = 10*sin(2*M_PI*1*T*i);	// sinewave force excitation
+		u[1] = a*sin(2*M_PI*f*T*i);	// input force (change to any arbitrary input)
 		
-		x2[0] = A[0][0]*x1[0] + A[0][1]*x1[1] + B[0]*u[0];
+		x2[0] = A[0][0]*x1[0] + A[0][1]*x1[1]; // "+ B[0]*u[0];" this part is a formality and not required
 		x2[1] = A[1][0]*x1[0] + A[1][1]*x1[1] + B[1]*u[1];
 		
 		y[0]  = C[0][0]*x2[0] + C[0][1]*x2[1];		// [m] - displacement
