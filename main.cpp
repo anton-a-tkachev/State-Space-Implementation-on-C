@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
 		y[0]  = C[0][0]*x2[0] + C[0][1]*x2[1];		// [m] - displacement
 		y[1]  = C[1][0]*x2[0] + C[1][1]*x2[1];		// [m/s] - velocity
 		
-		fprintf(fp, "%f,%f,%f\n", T*i, y[0], y[1]);	// output time, displacement, velocity
+		fprintf(fp, "%f,%f,%f,%f\n", T*i, u[1], y[0], y[1]);	// output time, displacement, velocity
 		
 		x1[0] = x2[0];		// exchange values between the current and the previous iterations
 		x1[1] = x2[1];
