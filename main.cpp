@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
 	double T  = 1E-3;	// [s] - time discretization
 	double Tf = 10;		// [s] - final time to stop simulation
 	
-	// State-space matrices
+	// Discrete state-space matrices
 	double A[2][2] = {{     1,         T},
 			  {-k*T/m, 1 - c*T/m}};
 					  
