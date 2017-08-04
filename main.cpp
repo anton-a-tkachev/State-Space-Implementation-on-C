@@ -25,6 +25,7 @@ int main(int argc, char** argv) {
 					  
 	double B[2] = {0, T/m};
 	
+	// Output variables
 	double C[2][2] = {{1, 0},	// [m] - displacement
 			  {0, 1}};	// [m/s] - velocity
 	
